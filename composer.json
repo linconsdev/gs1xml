@@ -10,7 +10,6 @@
         }
     ],
     "minimum-stability": "dev",
-    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "LinconsDev\\GS1XML\\":"src/"
