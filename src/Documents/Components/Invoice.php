@@ -63,7 +63,7 @@ return [
         'template'      => include('Invoice/invoiceLineItem.php')
     ],
     'shipFrom'              => [
-        'type'          => 'array',
+        'type'          => 'object',
         'attributes'    => [],
         'content'       => include('General/shipFrom.php')
     ]

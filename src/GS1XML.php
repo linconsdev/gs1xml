@@ -8,8 +8,7 @@ use LinconsDev\GS1XML\Documents\Invoice;
 use Storage;
 
 class GS1XML {
-    //This is gs1 xml object that can be initiated as order, order response, invoice, despatch advice
-    
+    //This is gs1 xml class that can be initiated as order, order response, invoice, despatch advice
     public static $type = null;
     public static $document = null;
 
@@ -24,7 +23,7 @@ class GS1XML {
         'orderResponse',
     ];
 
-    public static function document(array $type = null): GS1XML {
+    public static function document(string $type = null): GS1XML {
         if ($type != null) {
             self::$type = $type;
         }

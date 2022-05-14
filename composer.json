@@ -1,7 +1,6 @@
 {
     "name": "linconsdev/gs1xml",
     "description": "Laravel Package for handling GS1 XML Electronic documents exchange",
-    "type": "project",
     "license": "MIT",
     "authors": [
         {
