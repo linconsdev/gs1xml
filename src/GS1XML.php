@@ -17,6 +17,13 @@ class GS1XML {
     private $xml_data = null;
     private $xml_string = null;
 
+    private $documents_types = [
+        'invoice',
+        'despatchAdvice',
+        'order',
+        'orderResponse',
+    ];
+
     public static function document(array $type = null): GS1XML {
         if ($type != null) {
             self::$type = $type;
@@ -43,7 +50,7 @@ class GS1XML {
     }
 
     public function getKeyValue(string $property, string $path, $default_value = null) {
-        if ($this->_checkDocumentPropertyIsValid($property)) {
+        if ($this->__checkDocumentPropertyIsValid($property)) {
             $key = $this->getKeyContent($property, $path, $default_value);
             if (isset($key['content'])) {
                 return $key['content'];
@@ -54,13 +61,13 @@ class GS1XML {
     }
 
     public function getKeyAttributes(string $property, string $path, $default_value = []) {
-        if ($this->_checkDocumentPropertyIsValid($property)) {
+        if ($this->__checkDocumentPropertyIsValid($property)) {
             return $this->getKeyContent($property, $path, $default_value)['attributes'];
         }
     }
 
     public function getKeyAttributeValue(string $property, string $path, string $attribute, $default_value = null) {
-        if ($this->_checkDocumentPropertyIsValid($property)) {
+        if ($this->__checkDocumentPropertyIsValid($property)) {
             foreach($this->getKeyContent($property, $path, $default_value)['attributes'] as $attribute_key => $value) {
                 if ($attribute_key == $attribute) return $value;
             }
@@ -82,15 +89,13 @@ class GS1XML {
         }
     }
 
-    private function _checkDocumentPropertyIsValid($property) {
-        if (in_array($property, [
-            'standardBuisnessDocumentHeader',
-            'invoice',
-            'despatchAdvice',
-            'order',
-            'orderResponse',
-        ])) return true;
-        else throw new \Exception('Property "'.$property.'" is not part of this document.');
+    private function __checkDocumentPropertyIsValid($property) {
+        if (in_array($property, $this->documents_types)) {
+            if ($property == $this->type) return true;
+            else throw new \Exception('Property "'.$property.'" is not part of this document. This document is of type "'.$this->type.'"');
+        } else if ($property == 'standardBuisnessDocumentHeader') {
+            return true;
+        } else throw new \Exception('Property "'.$property.'" is not part of this document.');
     }
 
     public function __get($property) {
