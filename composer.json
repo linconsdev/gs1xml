@@ -1,0 +1,19 @@
+{
+    "name": "linconsdev/gs1xml",
+    "description": "Laravel Package for handling GS1 XML Electronic documents exchange",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Semir Mujic",
+            "email": "mujic.semirm@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "LinconsDev\\GS1XML\\":"src/"
+        }
+    },
+    "require": {}
+}
